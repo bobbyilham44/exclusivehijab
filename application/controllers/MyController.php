@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 class MyController extends CI_Controller {
     public function __construct() {
@@ -7,7 +7,6 @@ class MyController extends CI_Controller {
         $this->load->library('session');
         $this->load->helper(array('form','url'));
         $this->load->library(array('form_validation', 'email'));
-
     }
 
     function index() {
@@ -23,37 +22,37 @@ class MyController extends CI_Controller {
 
     function pesanMasuk() {
         $data = $this->My_Model->pesan();
-       // $where = array ('id_admin'=>); 
+       // $where = array ('id_admin'=>);
        // $datalagi = $this->My_Model->profileadmin('admin',$where);
         $this->load->view('header');
         $this->load->view('pesanmasuk', array('data' => $data));
         $this->load->view('sidebar');
     }
 
-    function logout(){	
+    function logout(){
         $this->session->sess_destroy();
         $this->index();
-    }	
+    }
 
     function readData() {
         $data = $this->My_Model->getData();
         $this->load->view('header');
         $this->load->view('pesanan', array('data' => $data));
-        $this->load->view('sidebar');	
+        $this->load->view('sidebar');
     }
 
     function history() {
         $data = $this->My_Model->terkirim();
         $this->load->view('header');
         $this->load->view('history', array('data' => $data));
-        $this->load->view('sidebar');	
+        $this->load->view('sidebar');
     }
 
     function updateProduk(){
         $data = $this->My_Model->menunya();
-        $this->load->view('header');	
+        $this->load->view('header');
         $this->load->view('update', array('data' => $data));
-        $this->load->view('sidebar');	
+        $this->load->view('sidebar');
     }
 
 
@@ -78,7 +77,7 @@ class MyController extends CI_Controller {
     }
 
     function valid(){
-        $this->form_validation->set_rules('id_nasi', 'id_nasi', 'required|is_unique[base_menu.id_nasi]'); 
+        $this->form_validation->set_rules('id_nasi', 'id_nasi', 'required|is_unique[base_menu.id_nasi]');
         if($this->form_validation->run() != false){
             $this->addProduk();
         }else{
@@ -124,7 +123,7 @@ class MyController extends CI_Controller {
         $data = $this->My_Model->menunya();
         $this->load->view('header');
         $this->load->view('update', array('data' => $data));
-        $this->load->view('sidebar');	
+        $this->load->view('sidebar');
     }
 
     function editProduk($id_nasi){
@@ -138,7 +137,7 @@ class MyController extends CI_Controller {
 			);
         $this->load->view('header');
         $this->load->view('edit', $data);
-        $this->load->view('sidebar');	
+        $this->load->view('sidebar');
     }
 
     function doUpdate($id_nasi){
@@ -147,7 +146,7 @@ class MyController extends CI_Controller {
         $this->load->library('upload', $config);
         $this->upload->do_upload('image');
         $file_data = $this->upload->data();
-        
+
         $id_nasi = $this->input->post('id_nasi');
         $jenis_menu = $this->input->post('jenis_menu');
         $harga = $this->input->post('harga');

@@ -7,13 +7,13 @@ class Welcome extends CI_Controller {
 			if ($this->session->userdata('nama_depan') != null || $this->session->userdata('nama_depan') != ""){
 				redirect('Member');
 			} else {
-				
+
 			}
 			$this->load->library('form_validation');
 			$this->load->model('My_Model');
 			$this->load->helper('url');
 		}
-	
+
 		public function index(){
 			$this->load->view('main/header');
 			$this->load->view('main/home');
@@ -38,11 +38,11 @@ class Welcome extends CI_Controller {
 			$this->load->view('main/about');
 			$this->load->view('main/footer');
 		}
-		public function menu(){
+		public function gallery(){
 			$this->load->view('main/header');
 			$nasi = $this->My_Model->getMenu();
-			$this->load->view('main/menu', array('nasi' => $nasi));
-			
+			$this->load->view('main/gallery', array('nasi' => $nasi));
+
 			$this->load->view('main/footer');
 		}
 		public function careers(){
